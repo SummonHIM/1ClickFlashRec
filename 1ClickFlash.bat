@@ -22,7 +22,7 @@ if /i %PSVersion% LSS 5 (
     exit
 )
 
-set SourcesListURL=https://raw.githubusercontent.com/SummonHIM/1ClickFlashRec/master/sample.sources.list
+set SourcesListURL=[Edit source list url here]
 set ADBToolsURL=https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 
 for /f "tokens=3 delims=n*." %%p in ('ver^') do (
