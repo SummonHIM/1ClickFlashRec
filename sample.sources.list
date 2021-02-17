@@ -1,3 +1,11 @@
-latest::v1.0::https://github.com/SummonHIM/1ClickFlashRec/releases/download/sample/recovery_a11.img
-slot1::v1.0::https://github.com/SummonHIM/1ClickFlashRec/releases/download/sample/recovery_a11.img
-slot2::v1.0::https://github.com/SummonHIM/1ClickFlashRec/releases/download/sample/recovery_a11.img
+latest#v1.0#https://github.com/SummonHIM/1ClickFlashRec/releases/download/sample/recovery_a11.img
+slot1#v1.0#12.xyz
+slot2#v1.0#13.xyz
+slot3#v1.0#14.xyz
+slot4#v1.0#15.xyz
+slot5#v1.0#16.xyz
+slot6#v1.0#17.xyz
+slot7#v1.0#18.xyz
+slot8#v1.0#19.xyz
+slot9#v1.0#20.xyz
+slot10#v1.0#21.xyz
