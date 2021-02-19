@@ -1,6 +1,6 @@
 # 1ClickFlashRec
 
-Base on [@DumbHokage](https://forum.xda-developers.com/m/11386365/)'s code, thanks [@DumbHokage](https://forum.xda-developers.com/m/11386365/)
+Base on [wzsx150](https://www.weibo.com/u/6033736159)'s code, thanks [wzsx150](https://www.weibo.com/u/6033736159)
 
 ## How to edit source list?
 
