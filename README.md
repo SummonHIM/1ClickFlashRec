@@ -1,6 +1,6 @@
 # 1ClickFlashRec
 
-Base on [wzsx150](https://www.weibo.com/u/6033736159)'s code, thanks [wzsx150](https://www.weibo.com/u/6033736159)
+Base on [wzsx150](https://www.weibo.com/u/6033736159)'s code, thanks [wzsx150](https://www.weibo.com/u/6033736159).
 
 ## How to edit source list?
 
@@ -8,13 +8,13 @@ Base on [wzsx150](https://www.weibo.com/u/6033736159)'s code, thanks [wzsx150](h
 
 You can see an sample [in here](https://github.com/SummonHIM/1ClickFlashRec/blob/master/sample.sources.list).
 
-Then edit the SourcesListURL's URL in [1ClickFlash.bat](https://github.com/SummonHIM/1ClickFlashRec/blob/master/1ClickFlash.bat) line 25.
+Then edit the SourcesListURL's URL in [1ClickFlash.bat](https://github.com/SummonHIM/1ClickFlashRec/blob/master/1ClickFlash.bat) line 27.
 
 ## Support languages
 
 - English
-- Vietnamese
-- Chinese
+- Vietnamese (By [DumbHokage](https://forum.xda-developers.com/m/dumbhokage.11386365/))
+- Chinese (By SummonHIM)
 
 ## Planning features
 

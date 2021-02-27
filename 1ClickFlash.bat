@@ -4,6 +4,7 @@ CHCP 65001
 setlocal enabledelayedexpansion
 cls
 
+
 powershell.exe $PSVersionTable> PSVer.info
 for /f "skip=3 tokens=2 delims= " %%p in (PSVer.info) do (
     set PSVersion=%%p
@@ -22,8 +23,10 @@ if /i %PSVersion% LSS 5 (
     exit
 )
 
+
 set SourcesListURL=[Edit source list url here]
 set ADBToolsURL=https://dl.google.com/android/repository/platform-tools-latest-windows.zip
+
 
 for /f "tokens=3 delims=n*." %%p in ('ver^') do (
     set WindowsVer=%%p
@@ -32,19 +35,18 @@ if %WindowsVer% LSS 10 (
     set LangChoice=1
     goto QuickLangSetting
 )
-
 CLS
-ECHO.***********************************************
-ECHO.           Please select a language:
+echo.***********************************************
+echo.           Please select a language:
 ECHO,
-ECHO.               1.English
-ECHO.               2.Vietnamese
-ECHO.               3.Simplified Chinese
+echo.               1.English
+echo.               2.Vietnamese (Tiếng Việt)
+echo.               3.Simplified Chinese (简体中文)
+echo.               4.Traditional Chinese (繁體中文)
 ECHO,
-ECHO.***********************************************
-CHOICE /C 123
+echo.***********************************************
+CHOICE /C 1234
 set LangChoice=%errorlevel%
-
 :QuickLangSetting
 :** Language Config Start, DON'T DELETE EMPTY LINE **
 if %LangChoice%==1 (
@@ -53,12 +55,14 @@ if %LangChoice%==1 (
     set LangPreTitle=Preparing:
     set LangGetSList=Getting sources list...
     set LangGetSListFailed=Download sources list failed！
+    set LangWannaGetOfflineList=Do you wanna browse the downloaded file
     set LangPauseRetry=Press any key to retry...
     set LangChoiceRecVer=Please select a version you wanna flash:
     set LangYouSelected=You selected
     set LangDownExist=already exist.
     set LangDownSelected=Downloading selected recovery from
     set LangGetRECFailed=Download selected recovery failed！
+    set LangEnterFile=Enter a file to load
     set LangDownADB=Downloading Android SDK Platform-Tools...
     set LangExpADB=Expanding Android SDK Platform-Tools...
     Set LangExistADB=Android SDK Platform-Tools already exist.
@@ -136,6 +140,10 @@ if %LangChoice%==2 (
     set LangDownSelected=Downloading selected recovery from
 
     set LangGetRECFailed=Download selected recovery failed！
+
+    set LangEnterFile=Enter a file to load
+
+    set LangWannaGetOfflineList=Do you wanna browse the downloaded file
 
     set LangDownADB=Downloading Android SDK Platform-Tools...
 
@@ -248,13 +256,15 @@ if %LangChoice%==2 (
 if %LangChoice%==3 (
     COLOR 6F
 
-    set language=chinese
+    set language=schinese
 
     set LangPreTitle=准备环境：
 
     set LangGetSList=正在获取源数据列表...
 
     set LangGetSListFailed=获取源数据列表失败！
+
+    set LangWannaGetOfflineList=要浏览已下载的文件吗
 
     set LangPauseRetry=按任意键重试...
 
@@ -267,6 +277,8 @@ if %LangChoice%==3 (
     set LangDownSelected=正在下载已选的 Recovery，地址：
 
     set LangGetRECFailed=下载已选的 Recovery 失败！
+
+    set LangEnterFile=请选择文件
 
     set LangDownADB=正在下载 Android SDK 平台工具...
 
@@ -364,7 +376,7 @@ if %LangChoice%==3 (
 
     set LangFlashOverDesc1=设备将会重启至
 
-    set LangFlashOverDesc2=设备可能会重启 1-2 次
+    set LangFlashOverDesc2=并可能会重启 1-2 次
 
     set LangFlashOverDesc3=感谢您使用本工具
 
@@ -374,10 +386,144 @@ if %LangChoice%==3 (
 
     set LangExit=按任意键退出
 )
+if %LangChoice%==4 (
+    COLOR 6F
+
+    set language=tchinese
+
+    set LangPreTitle=準備環境：
+
+    set LangGetSList=正在獲取源數據列表...
+
+    set LangGetSListFailed=獲取源數據列表失敗！
+
+    set LangWannaGetOfflineList=要瀏覽已下載的文件嗎
+
+    set LangPauseRetry=按任意鍵重試...
+
+    set LangChoiceRecVer=請選擇欲刷入的版本:
+
+    set LangYouSelected=您已選擇
+
+    set LangDownExist=已經存在。
+
+    set LangDownSelected=正在下載已選的 Recovery，地址：
+
+    set LangGetRECFailed=下載已選的 Recovery 失敗！
+
+    set LangEnterFile=請選擇文件
+
+    set LangDownADB=正在下載 Android SDK 平台工具...
+
+    set LangExpADB=正在解壓 Android SDK 平台工具...
+
+    Set LangExistADB=Android SDK 平台工具已經存在。
+
+    set LangTitle=一鍵刷寫
+
+    set LangRecInfo=Recovery 信息
+
+    set LangRecName=名稱
+
+    set LangRecver=版本
+
+    set LangDevName=設備名稱
+
+    set LangRecAuth=作者
+    
+    set LangRecDate=發布日期
+
+    set LangSuppMode=支持設備處於開機或 Fastboot 狀態
+
+    set LangPause=按任意鍵繼續
+
+    set LangMenuMode=您的設備當前狀態是
+
+    set LangMenuNormalMode=正常開機模式
+
+    set LangMenuFastMode=Fastboot 模式
+
+    set LangMenuOtherMode=其他模式
+
+    set LangMenuNumChoice=請選擇當前手機運行狀態
+
+    set LangOtherReboot=請重啟您的設備至
+
+    set LangOtherPause=按任意鍵返回主菜單。若 6 秒內無操作將自動返回。
+
+    set LangOr=或
+
+    set LangDevTypeTitle=請連接您的設備至您的計算機
+
+    set LangDevTypeMakeSure=並確保
+
+    set LangDevTypeMakeSure1=設備已經解鎖 Bootloader 鎖
+
+    set LangDevTypeMakeSure2=設備已經解鎖屏幕
+
+    set LangDevTypeMakeSure3=USB 偵錯已啟用
+
+    set LangDevTypeMakeSure4=設備驅動已經安裝至計算機內
+
+    set LangDevTypeMakeSure5=當設備提示申請 USB 偵錯授權時，
+
+    set LangDevTypeMakeSure5a=勾選“一律允許透過這台電腦進行”並點擊允許
+
+    set LangDevTypeMakeSure6=設備當前狀態為 Fastboot 模式
+
+    set LangDevTypeCheckTitle=正在檢查設備連接狀態
+
+    set LangDevTypeCheckDesc1=如果在此步驟上停留時間過長，請檢查上述信息。
+    
+    set LangDevTypeCheckDesc2=並重啟您的設備
+
+    set LangDevTypeRestarting=設備正在重啟中
+
+    set LangFlashingDesc=如果在此步驟上停留時間過長，請檢查
+
+    set LangFlashingDesc1=USB 線已經連接
+
+    set LangFlashingDesc2=設備驅動已經正確安裝
+
+    set LangFlashingRec=正在刷寫 Recovery
+
+    set LangFlashingRecDesc1=若提示 [OKAY] 則刷寫成功，否則為失敗。
+
+    set LangFlashingRecDesc2=如果在此步驟上停留時間過長，請重啟本工具
+
+    set LangFlashFailed=出了點問題！
+
+    set LangFlashFailedTitle=刷寫失敗
+
+    set LangFlashFailedDesc1=請檢查設備型號是否正確
+
+    set LangFlashFailedDesc2=確保設備狀態在 Fastboot 模式，並且 Bootloader 已解鎖
+
+    set LangFlashFailedDesc3=重新啟動本腳本
+
+    set LangFlashFailedDesc4=若仍失敗，請聯繫作者
+
+    set LangFlashFailedDesc5=感謝您使用本工具
+
+    set LangFlashOverTitle=刷寫 Recovery 成功
+
+    set LangFlashOverDesc1=設備將會重啟至
+
+    set LangFlashOverDesc2=並可能會重啟 1-2 次
+
+    set LangFlashOverDesc3=感謝您使用本工具
+
+    set LangFlashOverDesc4=本工具作者為
+
+    set LangFlashOverDesc5=基於 wzsx150 的腳本製作
+
+    set LangExit=按任意鍵退出
+)
 :** Language Config End, DON'T DELETE EMPTY LINE **
 
+
 :DownloadSList
-CLS
+cls
 title %LangPreTitle% %LangGetSList%
 echo %LangGetSList%
 if exist sources.list (
@@ -388,119 +534,154 @@ if %WindowsVer% LSS 10 (
 ) else (
     powershell Invoke-WebRequest "%SourcesListURL%" -OutFile "sources.list"
 )
-
-
 if not exist sources.list (
-    echo,
-    ECHO.***********************************************
-    echo %LangGetSListFailed%
-    echo %LangPauseRetry%
-    pause>nul
+    if exist recoverys (
+        goto OfflineChoice
+    ) else (
+        echo,
+        echo.***********************************************
+        echo %LangGetSListFailed%
+        echo %LangPauseRetry%
+        pause>nul
+        goto DownloadSList
+    )
+)
+goto SListChoice
+:OfflineChoice
+echo,
+echo.***********************************************
+echo %LangGetSListFailed%
+choice /m "%LangWannaGetOfflineList%"
+set OfflineChoice=%errorlevel%
+if %OfflineChoice%==1 (
+    goto OfflineList
+)
+if %OfflineChoice%==2 (
     goto DownloadSList
 )
+
+:SListChoice
 echo,
 title %LangPreTitle% %LangChoiceRecVer%
-ECHO.***********************************************
-
-set devnamecount=0
-set "devname_choice_options="
+echo.***********************************************
+set DevNameCount=0
+set "DevNameChoiceOptions="
 for /F "delims=# tokens=1" %%A in (sources.list) do (
-    if !devnamecount!==9 (
+    if !DevNameCount!==9 (
         goto SListdevnameOut
     )
-    set /a devnamecount+=1
-    set "devnameoptions[!devnamecount!]=%%A"
-    set devname_choice_options=!devname_choice_options!!devnamecount!
+    set /a DevNameCount+=1
+    set "DevNameOptions[!DevNameCount!]=%%A"
+    set DevNameChoiceOptions=!DevNameChoiceOptions!!DevNameCount!
 )
 :SListdevnameOut
-set namecount=0
-set "name_choice_options="
+set NameCount=0
+set "NameChoiceOptions="
 for /F "delims=# tokens=2" %%A in (sources.list) do (
-    if !namecount!==9 (
+    if !NameCount!==9 (
         goto SListNameOut
     )
-    set /a namecount+=1
-    set "nameoptions[!namecount!]=%%A"
-    set name_choice_options=!name_choice_options!!namecount!
+    set /a NameCount+=1
+    set "NameOptions[!NameCount!]=%%A"
+    set NameChoiceOptions=!NameChoiceOptions!!NameCount!
 )
 :SListNameOut
-set vercount=0
-set "ver_choice_options="
+set VerCount=0
+set "VerChoiceOptions="
 for /F "delims=# tokens=3" %%A in (sources.list) do (
-    if !vercount!==9 (
+    if !VerCount!==9 (
         goto SListVerOut
     )
-    set /a vercount+=1
-    set "veroptions[!vercount!]=%%A"
-    set ver_choice_options=!ver_choice_options!!vercount!
+    set /a VerCount+=1
+    set "VerOptions[!VerCount!]=%%A"
+    set VerChoiceOptions=!VerChoiceOptions!!VerCount!
 )
 :SListVerOut
-set authcount=0
-set "auth_choice_options="
+set AuthCount=0
+set "AuthChoiceOptions="
 for /F "delims=# tokens=4" %%A in (sources.list) do (
-    if !authcount!==9 (
+    if !AuthCount!==9 (
         goto SListauthOut
     )
-    set /a authcount+=1
-    set "authoptions[!authcount!]=%%A"
-    set auth_choice_options=!auth_choice_options!!authcount!
+    set /a AuthCount+=1
+    set "AuthOptions[!AuthCount!]=%%A"
+    set AuthChoiceOptions=!AuthChoiceOptions!!AuthCount!
 )
 :SListauthOut
-set datecount=0
-set "date_choice_options="
+set DateCount=0
+set "DateChoiceOptions="
 for /F "delims=# tokens=5" %%A in (sources.list) do (
-    if !datecount!==9 (
+    if !DateCount!==9 (
         goto SListdateOut
     )
-    set /a datecount+=1
-    set "dateoptions[!datecount!]=%%A"
-    set date_choice_options=!date_choice_options!!datecount!
+    set /a DateCount+=1
+    set "DateOptions[!DateCount!]=%%A"
+    set DateChoiceOptions=!DateChoiceOptions!!DateCount!
 )
 :SListdateOut
-set linkcount=0
-set "link_choice_options="
+set LinkCount=0
+set "LinkChoiceOptions="
 for /F "delims=# tokens=6" %%A in (sources.list) do (
-    if !linkcount!==9 (
+    if !LinkCount!==9 (
         goto SListLinkOut
     )
-    set /a linkcount+=1
-    set "linkoptions[!linkcount!]=%%A"
-    set link_choice_options=!link_choice_options!!linkcount!
+    set /a LinkCount+=1
+    set "LinkOptions[!LinkCount!]=%%A"
+    set LinkChoiceOptions=!LinkChoiceOptions!!LinkCount!
 )
 :SListLinkOut
-for /L %%A in (1,1,!vercount!) do echo [%%A]: %LangDevName%:!devnameoptions[%%A]!, %LangRecName%:!nameoptions[%%A]!, %LangRecver%:!veroptions[%%A]!, %LangRecAuth%:!authoptions[%%A]! ,%LangRecDate%:!dateoptions[%%A]!.
-choice /c:!ver_choice_options! /n /m "%LangChoiceRecVer%"
+for /L %%A in (1,1,!VerCount!) do echo [%%A]: %LangDevName%:!DevNameOptions[%%A]!, %LangRecName%:!NameOptions[%%A]!, %LangRecver%:!VerOptions[%%A]!, %LangRecAuth%:!AuthOptions[%%A]! ,%LangRecDate%:!DateOptions[%%A]!.
+echo.***********************************************
+choice /c:!VerChoiceOptions! /n /m "%LangChoiceRecVer%"
 set RecVerChoice=%errorlevel%
 echo,
-ECHO.***********************************************
-echo %LangYouSelected% %LangDevName%:!devnameoptions[%RecVerChoice%]!, %LangRecName%:!nameoptions[%RecVerChoice%]!, %LangRecver%:!veroptions[%RecVerChoice%]!, %LangRecAuth%:!authoptions[%RecVerChoice%]! ,%LangRecDate%:!dateoptions[%RecVerChoice%]!.
-
+echo.***********************************************
+echo %LangYouSelected% %LangDevName%:!DevNameOptions[%RecVerChoice%]!, %LangRecName%:!NameOptions[%RecVerChoice%]!, %LangRecver%:!VerOptions[%RecVerChoice%]!, %LangRecAuth%:!AuthOptions[%RecVerChoice%]! ,%LangRecDate%:!DateOptions[%RecVerChoice%]!.
 if not exist recoverys (
     mkdir recoverys
 )
-if exist "recoverys\!devnameoptions[%RecVerChoice%]!_!nameoptions[%RecVerChoice%]!_!veroptions[%RecVerChoice%]!_!dateoptions[%RecVerChoice%]!_!authoptions[%RecVerChoice%]!_recovery.img" (
-    echo recoverys\!devnameoptions[%RecVerChoice%]!_!nameoptions[%RecVerChoice%]!_!veroptions[%RecVerChoice%]!_!dateoptions[%RecVerChoice%]!_!authoptions[%RecVerChoice%]!_recovery.img %LangDownExist%
+if exist "recoverys\!DevNameOptions[%RecVerChoice%]!_!NameOptions[%RecVerChoice%]!_!VerOptions[%RecVerChoice%]!_!DateOptions[%RecVerChoice%]!_!AuthOptions[%RecVerChoice%]!_recovery.img" (
+    echo recoverys\!DevNameOptions[%RecVerChoice%]!_!NameOptions[%RecVerChoice%]!_!VerOptions[%RecVerChoice%]!_!DateOptions[%RecVerChoice%]!_!AuthOptions[%RecVerChoice%]!_recovery.img %LangDownExist%
 ) else (
-    title %LangPreTitle% %LangDownSelected% !linkoptions[%RecVerChoice%]!...
-    echo %LangDownSelected% !linkoptions[%RecVerChoice%]!...
+    title %LangPreTitle% %LangDownSelected% !LinkOptions[%RecVerChoice%]!...
+    echo %LangDownSelected% !LinkOptions[%RecVerChoice%]!...
     if %WindowsVer% LSS 10 (
-        certutil -urlcache -split -f "!linkoptions[%RecVerChoice%]!" "recoverys\!devnameoptions[%RecVerChoice%]!_!nameoptions[%RecVerChoice%]!_!veroptions[%RecVerChoice%]!_!dateoptions[%RecVerChoice%]!_!authoptions[%RecVerChoice%]!_recovery.img"
+        certutil -urlcache -split -f "!LinkOptions[%RecVerChoice%]!" "recoverys\!DevNameOptions[%RecVerChoice%]!_!NameOptions[%RecVerChoice%]!_!VerOptions[%RecVerChoice%]!_!DateOptions[%RecVerChoice%]!_!AuthOptions[%RecVerChoice%]!_recovery.img"
     ) else (
-        powershell Invoke-WebRequest "!linkoptions[%RecVerChoice%]!" -OutFile "recoverys\!devnameoptions[%RecVerChoice%]!_!nameoptions[%RecVerChoice%]!_!veroptions[%RecVerChoice%]!_!dateoptions[%RecVerChoice%]!_!authoptions[%RecVerChoice%]!_recovery.img"
+        powershell Invoke-WebRequest "!LinkOptions[%RecVerChoice%]!" -OutFile "recoverys\!DevNameOptions[%RecVerChoice%]!_!NameOptions[%RecVerChoice%]!_!VerOptions[%RecVerChoice%]!_!DateOptions[%RecVerChoice%]!_!AuthOptions[%RecVerChoice%]!_recovery.img"
     )
 )
-
-if not exist recoverys\!devnameoptions[%RecVerChoice%]!_!nameoptions[%RecVerChoice%]!_!veroptions[%RecVerChoice%]!_!dateoptions[%RecVerChoice%]!_!authoptions[%RecVerChoice%]!_recovery.img (
+if not exist recoverys\!DevNameOptions[%RecVerChoice%]!_!NameOptions[%RecVerChoice%]!_!VerOptions[%RecVerChoice%]!_!DateOptions[%RecVerChoice%]!_!AuthOptions[%RecVerChoice%]!_recovery.img (
     echo,
-    ECHO.***********************************************
+    echo.***********************************************
     echo %LangGetRECFailed%
     echo %LangPauseRetry%
     pause>nul
     goto DownloadSList
 )
+goto GetAdb
 
+:OfflineList
+set OfflineType=1
+set offlinecount=0
+for /F "delims=" %%A in ('dir /a:-d /b recoverys') do (
+    if !offlinecount!==9 (
+        goto OfflineOut
+    )
+    set /a offlinecount+=1
+    set "offlineoptions[!offlinecount!]=%%A"
+    set choice_offline_options=!choice_offline_options!!offlinecount!
+)
+:OfflineOut
 echo,
-ECHO.***********************************************
+echo.***********************************************
+for /L %%A in (1,1,!offlinecount!) do echo [%%A]. !offlineoptions[%%A]!
+choice /c:!choice_offline_options! /n /m "%LangEnterFile%: "
+set RecOfflineChoice=!offlineoptions[%errorlevel%]!
+
+:GetAdb
+echo,
+echo.***********************************************
 if not exist platform-tools (
     title %LangPreTitle% %LangDownADB%
     ECHO %LangDownADB%
@@ -517,53 +698,78 @@ if not exist platform-tools (
     echo %LangExistADB%
 )
 
-set device_name=!devnameoptions[%RecVerChoice%]!
-set rec_name=!nameoptions[%RecVerChoice%]!
-set rec_ver=!veroptions[%RecVerChoice%]!
-set rec_auth=!authoptions[%RecVerChoice%]!
-set rec_tooleditor=DumbHokage, SummonHIM
-set rec_date=!dateoptions[%RecVerChoice%]!
-set rec_img=!devnameoptions[%RecVerChoice%]!_!nameoptions[%RecVerChoice%]!_!veroptions[%RecVerChoice%]!_!dateoptions[%RecVerChoice%]!_!authoptions[%RecVerChoice%]!_recovery.img
+set DevName=!DevNameOptions[%RecVerChoice%]!
+set RecName=!NameOptions[%RecVerChoice%]!
+set RecVer=!VerOptions[%RecVerChoice%]!
+set RecAuth=!AuthOptions[%RecVerChoice%]!
+set RecDate=!DateOptions[%RecVerChoice%]!
+set RecToolEditor=DumbHokage, SummonHIM
+if "%OfflineType%"=="1" (
+    goto OfflineRecImg
+) else (
+    goto NormalRecImg
+)
+:OfflineRecImg
+set rec_img=%RecOfflineChoice%
+goto MainTitle
+:NormalRecImg
+set rec_img=!DevNameOptions[%RecVerChoice%]!_!NameOptions[%RecVerChoice%]!_!VerOptions[%RecVerChoice%]!_!DateOptions[%RecVerChoice%]!_!AuthOptions[%RecVerChoice%]!_recovery.img
 
-TITLE %device_name% %LangTitle% %rec_name%
-
+:MainTitle
 cd /d "%~dp0"
+if "%OfflineType%"=="1" (
+    TITLE %LangTitle% %RecOfflineChoice%
+) else (
+    TITLE %DevName% %LangTitle% %RecName%
+)
 
 :LOGO
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.              %LangRecInfo%
-ECHO.
-ECHO.              %LangRecName%: %rec_name%
-ECHO.              %LangRecver%: %rec_ver%
-ECHO.              %LangDevName%: %device_name%
-ECHO.              %LangRecAuth%: %rec_auth%
-ECHO.              %LangRecDate%: %rec_date%
-ECHO.           
-ECHO.     %LangSuppMode%
-ECHO.***********************************************
-ECHO.
-ECHO.%LangPause%...
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+    echo.***********************************************
+    echo.              %LangRecInfo%
+    echo.
+    echo. %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+    echo.***********************************************
+    echo.              %LangRecInfo%
+    echo.
+    echo.              %LangRecName%: %RecName%
+    echo.              %LangRecver%: %RecVer%
+    echo.              %LangDevName%: %DevName%
+    echo.              %LangRecAuth%: %RecAuth%
+    echo.              %LangRecDate%: %RecDate%    
+)
+echo.           
+echo.     %LangSuppMode%
+echo.***********************************************
+echo.
+echo.%LangPause%...
 pause>nul
 
 :MENU
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.             %LangMenuMode%:
-ECHO.
-ECHO.              1.%LangMenuNormalMode%
-ECHO.
-ECHO.              2.%LangMenuFastMode%
-ECHO.
-ECHO.              3.%LangMenuOtherMode%
-ECHO.
-ECHO.
-ECHO.***********************************************
-ECHO.
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.             %LangMenuMode%:
+echo.
+echo.              1.%LangMenuNormalMode%
+echo.
+echo.              2.%LangMenuFastMode%
+echo.
+echo.              3.%LangMenuOtherMode%
+echo.
+echo.
+echo.***********************************************
+echo.
 choice /c 123 /m "%LangMenuNumChoice%:"
 set MenuNumChoice=%errorlevel%
 if "%MenuNumChoice%"=="1" (
@@ -578,18 +784,22 @@ if "%MenuNumChoice%"=="3" (
 
 :OTHERS
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.             %LangOtherReboot%
-ECHO.
-ECHO.              %LangMenuNormalMode%
-ECHO.                   %LangOr%
-ECHO.              %LangMenuFastMode%
-ECHO.
-ECHO.%LangOtherPause%
-ECHO.***********************************************
-ECHO.
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.             %LangOtherReboot%
+echo.
+echo.              %LangMenuNormalMode%
+echo.                   %LangOr%
+echo.              %LangMenuFastMode%
+echo.
+echo.%LangOtherPause%
+echo.***********************************************
+echo.
 timeout /t 6 >nul
 echo.
 goto MENU
@@ -597,45 +807,53 @@ goto MENU
 
 :IN_SYSTEM
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.        %LangDevTypeTitle%
-ECHO.
-ECHO.            %LangDevTypeMakeSure%:
-ECHO.      1. %LangDevTypeMakeSure1%
-ECHO.      2. %LangDevTypeMakeSure2%
-ECHO.      3. %LangDevTypeMakeSure3%
-ECHO.      4. %LangDevTypeMakeSure4%
-ECHO.      5. %LangDevTypeMakeSure5%
-ECHO.         %LangDevTypeMakeSure5a%
-ECHO.
-ECHO.            %LangPause%...
-ECHO.***********************************************
-ECHO.
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.        %LangDevTypeTitle%
+echo.
+echo.            %LangDevTypeMakeSure%:
+echo.      1. %LangDevTypeMakeSure1%
+echo.      2. %LangDevTypeMakeSure2%
+echo.      3. %LangDevTypeMakeSure3%
+echo.      4. %LangDevTypeMakeSure4%
+echo.      5. %LangDevTypeMakeSure5%
+echo.         %LangDevTypeMakeSure5a%
+echo.
+echo.            %LangPause%...
+echo.***********************************************
+echo.
 pause>nul
-ECHO.        %LangDevTypeCheckTitle%...
-ECHO.
-ECHO.   %LangDevTypeCheckDesc1%
-ECHO.           %LangDevTypeCheckDesc2%
-ECHO.***********************************************
-ECHO.
+echo.        %LangDevTypeCheckTitle%...
+echo.
+echo.   %LangDevTypeCheckDesc1%
+echo.           %LangDevTypeCheckDesc2%
+echo.***********************************************
+echo.
 timeout /t 2 /nobreak >NUL
 platform-tools\adb.exe wait-for-device >NUL 2>NUL
 
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.
-ECHO.
-ECHO.             %LangDevTypeRestarting%
-ECHO.
-ECHO.
-ECHO.***********************************************
-ECHO.
-ECHO.   %LangDevTypeCheckDesc1%
-ECHO.
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.
+echo.
+echo.             %LangDevTypeRestarting%
+echo.
+echo.
+echo.***********************************************
+echo.
+echo.   %LangDevTypeCheckDesc1%
+echo.
 platform-tools\adb.exe reboot bootloader >NUL 2>NUL
 timeout /t 3 /nobreak >NUL
 goto FLASHING
@@ -643,58 +861,70 @@ goto FLASHING
 
 :FASTBOOT_MODE
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.          %LangDevTypeTitle%
-ECHO.
-ECHO.           %LangDevTypeMakeSure%:
-ECHO.      1. %LangDevTypeMakeSure1%
-ECHO.      2. %LangDevTypeMakeSure6%
-ECHO.      3. %LangDevTypeMakeSure4%
-ECHO.
-ECHO.            %LangPause%...
-ECHO.***********************************************
-ECHO.
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.          %LangDevTypeTitle%
+echo.
+echo.           %LangDevTypeMakeSure%:
+echo.      1. %LangDevTypeMakeSure1%
+echo.      2. %LangDevTypeMakeSure6%
+echo.      3. %LangDevTypeMakeSure4%
+echo.
+echo.            %LangPause%...
+echo.***********************************************
+echo.
 pause>nul
 goto FLASHING
 
 
 :FLASHING
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.
-ECHO.          %LangDevTypeCheckTitle%...
-ECHO.
-ECHO.
-ECHO.      %LangFlashingDesc%
-ECHO.
-ECHO.      1. %LangFlashingDesc1%
-ECHO.      2. %LangFlashingDesc2%
-ECHO.      3. %LangDevTypeMakeSure6%
-ECHO.
-ECHO.             %LangDevTypeCheckDesc2%
-ECHO.***********************************************
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.
+echo.          %LangDevTypeCheckTitle%...
+echo.
+echo.
+echo.      %LangFlashingDesc%
+echo.
+echo.      1. %LangFlashingDesc1%
+echo.      2. %LangFlashingDesc2%
+echo.      3. %LangDevTypeMakeSure6%
+echo.
+echo.             %LangDevTypeCheckDesc2%
+echo.***********************************************
 timeout /t 2 /nobreak >NUL
 platform-tools\fastboot.exe wait-for-device >NUL 2>NUL
 
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.
-ECHO.
-ECHO.             %LangFlashingRec%...
-ECHO.
-ECHO.
-ECHO.***********************************************
-ECHO.
-ECHO.      %LangFlashingRecDesc1%
-ECHO.
-ECHO.    %LangFlashingRecDesc2%
-ECHO.
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.
+echo.
+echo.             %LangFlashingRec%...
+echo.
+echo.
+echo.***********************************************
+echo.
+echo.      %LangFlashingRecDesc1%
+echo.
+echo.    %LangFlashingRecDesc2%
+echo.
 platform-tools\fastboot.exe flash recovery "recoverys\%rec_img%" || goto FLASH_FAILED
 REM platform-tools\fastboot.exe flash misc misc.bin >NUL 2>NUL
 timeout /t 6 /nobreak >NUL
@@ -702,26 +932,30 @@ goto FLASH_OVER
 
 
 :FLASH_FAILED
-ECHO.
-ECHO. %LangFlashFailed%
+echo.
+echo. %LangFlashFailed%
 timeout /t 6 /nobreak >NUL
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.
-ECHO.                   %LangFlashFailedTitle%
-ECHO.
-ECHO.           1. %LangFlashFailedDesc1%
-ECHO.           2. %LangFlashFailedDesc2%
-ECHO.           3. %LangFlashFailedDesc3%
-ECHO.              %LangFlashFailedDesc4%
-ECHO.
-ECHO.           %rec_auth% %LangFlashFailedDesc5%
-ECHO.
-ECHO.            %LangExit%...
-ECHO.***********************************************
-ECHO.
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.
+echo.                   %LangFlashFailedTitle%
+echo.
+echo.           1. %LangFlashFailedDesc1%
+echo.           2. %LangFlashFailedDesc2%
+echo.           3. %LangFlashFailedDesc3%
+echo.              %LangFlashFailedDesc4%
+echo.
+echo.           %RecAuth% %LangFlashFailedDesc5%
+echo.
+echo.            %LangExit%...
+echo.***********************************************
+echo.
 timeout /t 1 /nobreak >NUL
 pause >NUL
 EXIT
@@ -729,24 +963,28 @@ EXIT
 
 :FLASH_OVER
 CLS
-ECHO.
-ECHO.         %device_name% %LangTitle% %rec_name%
-ECHO.***********************************************
-ECHO.
-ECHO.             %LangFlashOverTitle%
-ECHO.
-ECHO.
-ECHO.        %LangFlashOverDesc1% %rec_name%
-ECHO.            %LangFlashOverDesc2%
-ECHO.
-ECHO.
-ECHO.           %LangFlashOverDesc3%
-ECHO.           %LangFlashOverDesc4% %rec_tooleditor%
-ECHO.        %LangFlashOverDesc5%
-ECHO.
-ECHO.           %LangExit%...
-ECHO.***********************************************
-ECHO.
+echo.
+if "%OfflineType%"=="1" (
+    echo.  %LangTitle% %RecOfflineChoice%
+) else (
+    echo.         %DevName% %LangTitle% %RecName%
+)
+echo.***********************************************
+echo.
+echo.             %LangFlashOverTitle%
+echo.
+echo.
+echo.        %LangFlashOverDesc1% %RecName%
+echo.        %LangFlashOverDesc2%
+echo.
+echo.
+echo.        %LangFlashOverDesc3%
+echo.        %LangFlashOverDesc4% %RecToolEditor%
+echo.        %LangFlashOverDesc5%
+echo.
+echo.           %LangExit%...
+echo.***********************************************
+echo.
 platform-tools\fastboot.exe reboot recovery
 pause >NUL
 
