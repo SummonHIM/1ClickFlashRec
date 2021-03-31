@@ -33,6 +33,11 @@ if %WindowsVer% LSS 10 (
 )
 
 
+:linkConfigurate
+set sourcesListURL=[Edit source list in here]
+set ADBToolsURL=https://dl.google.com/android/repository/platform-tools-latest-windows.zip
+
+
 :langSelect
 title Please select a language
 echo ----------------------------------------------------------------------------------------------------
@@ -214,6 +219,7 @@ if %langChoice%==2 (
     set langFailedExit=希望下次能让您满意！
 )
 
+
 :Logo
 cls
 title %langWelcome% %langTitle%
@@ -240,13 +246,9 @@ echo          https://github.com/SummonHIM/EZ-RECFlasher
 timeout /t 3 /nobreak >NUL
 cls
 
-:linkConfigurate
-set sourcesListURL=[Edit source list in here]
-set ADBToolsURL=https://dl.google.com/android/repository/platform-tools-latest-windows.zip
-set offlineMode=false
-title %langTitle%
 
 :step1Select
+title %langTitle%
 cls
 echo ----------------------------------------------------------------------------------------------------
 echo *   [%langBreadcrumbSelect%]   *    %langBreadcrumbConfirm%    *    %langBreadcrumbDownload%    *    %langBreadcrumbFlashing%    *    %langBreadcrumbComplete%    *
@@ -267,8 +269,6 @@ if not exist sources.list (
         goto step1Select
     )
 )
-
-
 set pageOfList=1
 :getSourceListDone
 cls
@@ -446,6 +446,7 @@ if %isZipOfflineChoice%==2 (
     set isZipOffline=false
 )
 
+
 :step2Confirm
 cls
 echo ----------------------------------------------------------------------------------------------------
@@ -464,7 +465,6 @@ if %offlineMode% == false (
     echo %langRecoveryAuthor%: !recoveryAuthorOptions[%recoveryVersionChoiceErrorlevel%]!
     echo %langRelaeseDate%: !relaeseDateOptions[%recoveryVersionChoiceErrorlevel%]!
 )
-
 echo,
 echo %langConfirmdesc%
 choice /m "%langConfirmYN%?"
@@ -475,6 +475,7 @@ if %confirmCorrectChoice% == 1 (
 if %confirmCorrectChoice% == 2 (
     goto step1Select
 )
+
 
 :step3Download
 cls
@@ -502,6 +503,8 @@ if not exist "recoverys\%downloadingFileName%_recovery.!fileTypeOptions[%recover
     pause>nul
     goto step3Download
 )
+
+
 :downloadADB
 echo,
 echo %langDownloadADBCheck%...
@@ -521,6 +524,7 @@ if not exist platform-tools\adb.exe (
     pause>nul
     goto step3Download
 )
+
 
 :step4Flashing
 cls
@@ -550,6 +554,8 @@ if %offlineMode% == true (
         set selectedIMGFile=recoverys\!offlineFileListOptions[%offlineFileListChoiceErrorlevel%]!
     )
 )
+
+
 :checkDevicePlugin
 cls
 echo ----------------------------------------------------------------------------------------------------
@@ -576,6 +582,7 @@ if %fastbootOnline% == 0 (
 timeout /t 1 /nobreak >NUL
 goto checkDevicePlugin
 
+
 :inADBMode
 echo,
 echo %langRebootingToFastboot%...
@@ -583,12 +590,14 @@ platform-tools\adb.exe reboot bootloader >nul
 timeout /t 5 /nobreak >NUL
 goto checkDevicePlugin
 
+
 :startFlashing
 echo,
 echo %langFlashingRecovery%: %selectedIMGFile%...
 platform-tools\fastboot.exe flash recovery "%selectedIMGFile%"
 if %errorlevel% NEQ 0 ( goto flashFailed )
 timeout /t 5 /nobreak >NUL
+
 
 :step5Complete
 rmdir /s /q expanded_Rec >nul
@@ -616,6 +625,7 @@ echo                /\___/                  /\___/
 echo                \/__/                   \/__/       
 timeout /t 3 /nobreak >NUL
 exit
+
 
 :flashFailed
 rmdir /s /q expanded_Rec >nul
