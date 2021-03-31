@@ -36,6 +36,7 @@ if %WindowsVer% LSS 10 (
 :linkConfigurate
 set sourcesListURL=[Edit source list in here]
 set ADBToolsURL=https://dl.google.com/android/repository/platform-tools-latest-windows.zip
+set offlineMode=false
 
 
 :langSelect
