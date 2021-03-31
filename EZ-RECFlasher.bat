@@ -241,7 +241,7 @@ timeout /t 3 /nobreak >NUL
 cls
 
 :linkConfigurate
-set sourcesListURL=https://raw.githubusercontent.com/SummonHIM/1ClickFlashRec/master/sample.sources.list
+set sourcesListURL=[Edit source list in here]
 set ADBToolsURL=https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 set offlineMode=false
 title %langTitle%
