@@ -591,8 +591,8 @@ if %errorlevel% NEQ 0 ( goto flashFailed )
 timeout /t 5 /nobreak >NUL
 
 :step5Complete
-cls
 rmdir /s /q expanded_Rec >nul
+cls
 echo ----------------------------------------------------------------------------------------------------
 echo *    %langBreadcrumbSelect%    *    %langBreadcrumbConfirm%    *    %langBreadcrumbDownload%    *    %langBreadcrumbFlashing%    *   [%langBreadcrumbComplete%]   *
 echo ----------------------------------------------------------------------------------------------------
