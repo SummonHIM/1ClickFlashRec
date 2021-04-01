@@ -1,20 +1,28 @@
 # 1ClickFlashRec
 
-Base on [wzsx150](https://www.weibo.com/u/6033736159)'s code, thanks [wzsx150](https://www.weibo.com/u/6033736159).
+Easy and fast download and flash recovery in one file
 
-## How to edit source list?
+## Features
+
+- Fast select and auto download recovery and adb files.
+- Multi-language support.
+- Support using in normal mode or fastboot mode.
+
+## I'm a programmer, how to use this code?
+
+First you need to create a source list file
 
 [Device Name]#[Recovery Name]#[Recovery version]#[Recovery author]#[Release date]#[Download URL]#[File suffix]
 
 You can see an sample [in here](https://github.com/SummonHIM/1ClickFlashRec/blob/master/sample.sources.list).
 
-Then edit the SourcesListURL's URL in [1ClickFlash.bat](https://github.com/SummonHIM/1ClickFlashRec/blob/master/1ClickFlash.bat) line 244.
+Then push your source list in your html server (Or github page, free server lol.) and edit the SourcesListURL's URL in [EZ-RECFlasher.bat](https://github.com/SummonHIM/EZ-RECFlasher/blob/master/EZ-RECFlasher.bat) line 37.
 
 ## Support languages
 
 - English
-- Vietnamese (By [DumbHokage](https://forum.xda-developers.com/m/dumbhokage.11386365/))
-- Chinese
+- Simplified Chinese
+
 ## Planning features
 
 - Linux shell support

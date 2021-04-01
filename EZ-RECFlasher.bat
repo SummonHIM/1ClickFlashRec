@@ -34,7 +34,7 @@ if %WindowsVer% LSS 10 (
 
 
 :linkConfigurate
-set sourcesListURL=[Edit source list in here]
+set sourcesListURL=[Edit source list url here.]
 set ADBToolsURL=https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 set offlineMode=false
 
@@ -44,11 +44,12 @@ title Please select a language
 echo ----------------------------------------------------------------------------------------------------
 echo            Please select a language:
 echo, 
-echo                1.English / 英语
-echo                2.Simplified Chinese / 简体中文
+echo                1.English
+echo                2.Simplified Chinese (简体中文)
+echo                3.Traditional Chinese (繁體中文)
 echo, 
 echo ----------------------------------------------------------------------------------------------------
-choice /c 12
+choice /c 123
 set langChoice=%errorlevel%
 :QuickLangSetting
 if %langChoice%==1 (
@@ -90,8 +91,12 @@ if %langChoice%==1 (
     set langExpandingADB=Expanding Android Debug Bridge
     set langADBAlreadyExist=Android Debug Bridge already exists.
     set langExpandingZIP=Expanding Zip file
-    set langCheckDevicePlugin=Checking device connection, Please connect your device to your computer
-    set langADBDeviceDetected=ADB device detected！
+    set langCheckDevicePlugin=Checking device connection, Please connect your device to your computer and enable USB debugging
+    set langADBDeviceDetected=ADB device detected
+    set langADBDeviceinRecovery=but device is in recovery mode.
+    set langADBDeviceinRecoveryDesc=Please reboot your device to Fastboot mode.
+    set langADBDeviceNoAuth=but device not authorized.
+    set langADBDeviceNoAuthDesc=Please check your device, when your device prompts USB debugging authorization, check Always allow and click Authorize.
     set langADBDeviceUndetected=ADB device undetected.
     set langFastbootDeviceDetected=Fastboot device detected！
     set langFastbootDeviceUndetected=Fastboot device undetected.
@@ -185,9 +190,17 @@ if %langChoice%==2 (
 
     set langExpandingZIP=正在解压 Zip 类型文件
 
-    set langCheckDevicePlugin=正在检查设备连接，请插入设备至当前计算机内
+    set langCheckDevicePlugin=正在检查设备连接，请插入设备至当前计算机内并开启“USB 调试”
 
-    set langADBDeviceDetected=已检测到 ADB 设备连接！
+    set langADBDeviceDetected=已检测到 ADB 设备连接
+
+    set langADBDeviceinRecovery=但设备现处于 Recovery 模式。
+
+    set langADBDeviceinRecoveryDesc=请重启您的设备至 Fastboot 模式。
+    
+    set langADBDeviceNoAuth=但设备尚未允许认证。
+
+    set langADBDeviceNoAuthDesc=请检查您的设备，当设备提示申请 USB 调试授权时，勾选“一律允许使用该计算机”并点击允许。
 
     set langADBDeviceUndetected=未检测到 ADB 设备连接。
 
@@ -218,6 +231,125 @@ if %langChoice%==2 (
     set langFailedRetry=是否重试
 
     set langFailedExit=希望下次能让您满意！
+)
+if %langChoice%==3 (
+    set langBreadcrumbSelect=選擇
+
+    set langBreadcrumbDownload=下載
+
+    set langBreadcrumbConfirm=確認
+
+    set langBreadcrumbFlashing=刷寫
+
+    set langBreadcrumbComplete=完成
+
+    set langBreadcrumbFailed=失敗
+
+    set langWelcome=歡迎使用
+
+    set langLogoAttention=刷機有風險，玩機需謹慎。
+
+    set langTitle=一鍵刷寫 Recovery 腳本
+    
+    set langAnyKeyRetry=按任意鍵重試
+
+    set langPrevious=上一頁
+
+    set langNext=下一頁
+
+    set langOfflineMode=離線模式
+
+    set langGetSourceList=正在獲取源數據列表
+
+    set langGetSourceListFailed=獲取源數據列表失敗！
+
+    set langGetSourceListFailedDesc=若要運行離線模式，請在本腳本目錄下新建 “recoverys” 文件夾並將欲刷寫的 Recovery 文件放入文件夾內。
+    
+    set langSourceListTitle=請選擇欲刷寫的 Recovery
+
+    set langDeviceCode=設備代碼
+
+    set langRecoveryName=Recovery 名稱
+
+    set langRecoveryVersion=Recovery 版本
+
+    set langRecoveryAuthor=Recovery 作者
+
+    set langRelaeseDate=發佈日期
+    
+    set langWannaTryOffline=是否進入離線模式?
+
+    set langOfflineIsZip=是否爲 .zip 壓縮包
+
+    set langOfflineFileName=本地文件名
+
+    set langConfirmTitle=請確認詳細信息
+
+    set langConfirmdesc=請認真檢查以上信息！
+
+    set langConfirmYN=以上信息是否正確
+
+    set langDownloading=正在下載
+
+    set langDownloadRecoveryCheck=正在檢查已選的 Recovery
+
+    set langDownloadRecoveryExist=已選擇的 Recovery 已經存在。
+
+    set langDownloadRecoveryFailed=下載已選擇的 Recovery 失敗！
+
+    set langDownloadADBCheck=正在檢查 Android Debug Bridge
+
+    set langDownloadADB=Android Debug Bridge 不存在！開始下載
+
+    set langDownloadADBFailed=下載 Android Debug Bridge 失敗！
+
+    set langExpandingADB=正在解壓 Android Debug Bridge
+
+    set langADBAlreadyExist=Android Debug Bridge 已經存在。
+
+    set langExpandingZIP=正在解壓 Zip 類型文件
+
+    set langCheckDevicePlugin=正在檢查設備連接，請插入設備至當前計算機內並開啓“USB 偵錯”
+
+    set langADBDeviceDetected=已偵測到 ADB 設備連接
+
+    set langADBDeviceinRecovery=但設備現處於 Recovery 模式。
+
+    set langADBDeviceinRecoveryDesc=請重啓您的設備至 Fastboot 模式。
+    
+    set langADBDeviceNoAuth=但設備尚未允許認證。
+
+    set langADBDeviceNoAuthDesc=請檢查您的設備，當設備提示申請 USB 偵錯授權時，勾選“一律允許透過這台電腦進行”並點擊允許。
+
+    set langADBDeviceUndetected=未偵測到 ADB 設備連接。
+
+    set langFastbootDeviceDetected=已偵測到 Fastboot 設備連接！
+
+    set langFastbootDeviceUndetected=未偵測到 Fastboot 設備連接。
+
+    set langRebootingToFastboot=正在重啓手機至 Fastboot 模式
+
+    set langFlashingRecovery=開始刷寫已選擇的 Recovery
+
+    set langDoneTitle=大功告成！
+
+    set langRebootToFastboot=是否將設備重啓至 Recovery
+
+    set langFailedTitle=刷寫失敗！
+
+    set langFailedDesc1=請檢查
+
+    set langFailedDesc2=設備代碼/型號是否正確。
+
+    set langFailedDesc3=確保設備的 Bootloader 已解鎖。
+
+    set langFailedDesc4=選擇的 Recovery 文件是否完整。
+
+    set langFailedDesc5=若仍失敗，請聯繫 腳本/Recovery 作者。
+
+    set langFailedRetry=是否重試
+
+    set langFailedExit=希望下次能讓您滿意！
 )
 
 
@@ -563,23 +695,74 @@ echo ---------------------------------------------------------------------------
 echo *    %langBreadcrumbSelect%    *    %langBreadcrumbConfirm%    *    %langBreadcrumbDownload%    *   [%langBreadcrumbFlashing%]   *    %langBreadcrumbComplete%    *
 echo ----------------------------------------------------------------------------------------------------
 echo %langCheckDevicePlugin%...
-platform-tools\adb.exe devices|findstr /e "device"
+adb devices|findstr /e "device"
 set adbOnline=%errorlevel%
-platform-tools\fastboot.exe devices|findstr /e "fastboot"
+adb devices|findstr /e "recovery"
+set adbRecOnline=%errorlevel%
+adb devices|findstr /e "unauthorized"
+set adbNoAuth=%errorlevel%
+fastboot devices|findstr /e "fastboot"
 set fastbootOnline=%errorlevel%
-if %adbOnline% == 0 (
-    echo %langADBDeviceDetected%
-    goto inADBMode
-) else (
-    echo %langADBDeviceUndetected%
-)
 if %fastbootOnline% == 0 (
     echo %langFastbootDeviceDetected%
     goto startFlashing
 ) else (
     echo %langFastbootDeviceUndetected%
 )
-
+if %adbOnline% == 0 (
+    if %adbRecOnline% == 0 (
+        if %adbNoAuth% == 0 (
+            echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
+            echo,
+            echo %langADBDeviceNoAuthDesc%
+            echo %langAnyKeyRetry%...
+            pause>nul
+        ) else (
+            echo %langADBDeviceDetected%, %langADBDeviceinRecovery%
+            echo,
+            echo %langADBDeviceinRecoveryDesc%
+            echo %langAnyKeyRetry%...
+            pause>nul
+        )
+    ) else (
+        if %adbNoAuth% == 0 (
+            echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
+            echo,
+            echo %langADBDeviceNoAuthDesc%
+            echo %langAnyKeyRetry%...
+            pause>nul
+        ) else (
+            echo %langADBDeviceDetected%!
+            goto inADBMode
+        )
+    )
+) else (
+    if %adbRecOnline% == 0 (
+        if %adbNoAuth% == 0 (
+            echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
+            echo,
+            echo %langADBDeviceNoAuthDesc%
+            echo %langAnyKeyRetry%...
+            pause>nul
+        ) else (
+            echo %langADBDeviceDetected%, %langADBDeviceinRecovery%
+            echo,
+            echo %langADBDeviceinRecoveryDesc%
+            echo %langAnyKeyRetry%...
+            pause>nul
+        )
+    ) else (
+        if %adbNoAuth% == 0 (
+            echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
+            echo,
+            echo %langADBDeviceNoAuthDesc%
+            echo %langAnyKeyRetry%...
+            pause>nul
+        ) else (
+            echo %langADBDeviceUndetected%
+        )
+    )
+)
 timeout /t 1 /nobreak >NUL
 goto checkDevicePlugin
 
