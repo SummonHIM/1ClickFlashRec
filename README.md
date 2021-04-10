@@ -8,6 +8,13 @@ Easy and fast download and flash recovery in one file!
 - Multi-language support.
 - Support using in normal mode or fastboot mode.
 
+## Download
+
+[GitHub](https://github.com/SummonHIM/EZ-RECFlasher/releases)
+
+[Gitee](https://gitee.com/summonhim/EZ-RECFlasher/releases)
+
+Now available devices: Redmi K30 5G(Picasso)
 ## I'm a programmer, how to use this code?
 
 First you need to create a source list file like this:
