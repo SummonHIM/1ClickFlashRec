@@ -1,6 +1,6 @@
 # 1ClickFlashRec - 一键刷入 Recovery
 
-[[English]](https://summonhim.github.io/EZ-RECFlasher/) | [简体中文]
+[[English]](https://summonhim.github.io/EZ-RECFlasher/) / [简体中文]
 
 简单快捷的 Recovery 自动下载与刷入脚本解决方案！
 
