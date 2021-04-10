@@ -1,5 +1,8 @@
 # 1ClickFlashRec
 
+
+[English] / [[简体中文]](https://summonhim.github.io/EZ-RECFlasher/README-zh-Hans)
+
 Easy and fast download and flash recovery in one file!
 
 ## Features
