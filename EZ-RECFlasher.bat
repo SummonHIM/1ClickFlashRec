@@ -28,8 +28,8 @@ if /i %PSVersion% LSS 5 (
     exit
 )
 if %WindowsVer% LSS 10 (
-    set LangChoice=1
-    goto QuickLangSetting
+    set langChoice=1
+    goto quickLangSetting
 )
 
 
@@ -40,6 +40,7 @@ set offlineMode=false
 
 
 :langSelect
+cls
 title Please select a language
 echo ----------------------------------------------------------------------------------------------------
 echo            Please select a language:
@@ -47,12 +48,19 @@ echo,
 echo                1.English
 echo                2.Simplified Chinese (简体中文)
 echo                3.Traditional Chinese (繁體中文)
+echo                S.Submit a new language
 echo, 
 echo ----------------------------------------------------------------------------------------------------
-choice /c 123
+choice /c S123
 set langChoice=%errorlevel%
-:QuickLangSetting
+
+:submitNewLang
 if %langChoice%==1 (
+    start https://github.com/SummonHIM/EZ-RECFlasher
+    goto langSelect
+)
+:quickLangSetting
+if %langChoice%==2 (
     set langBreadcrumbSelect=Select
     set langBreadcrumbDownload=Download
     set langBreadcrumbConfirm=Confirm
@@ -113,7 +121,7 @@ if %langChoice%==1 (
     set langFailedRetry=Do you wanna try again?
     set langFailedExit=and hope will be better in next time.
 )
-if %langChoice%==2 (
+if %langChoice%==3 (
     set langBreadcrumbSelect=选择
 
     set langBreadcrumbDownload=下载
@@ -232,7 +240,7 @@ if %langChoice%==2 (
 
     set langFailedExit=希望下次能让您满意！
 )
-if %langChoice%==3 (
+if %langChoice%==4 (
     set langBreadcrumbSelect=選擇
 
     set langBreadcrumbDownload=下載
