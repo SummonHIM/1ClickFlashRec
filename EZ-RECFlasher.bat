@@ -74,6 +74,7 @@ if %langChoice%==2 (
     set langPrevious=Previous
     set langNext=Next
     set langOfflineMode=Offline mode
+    set langOnlineMode=Online mode
     set langGetSourceList=Getting sources list
     set langGetSourceListFailed=Download sources list failed！
     set langGetSourceListFailedDesc=To activate the offline mode, you need to create a new folder call "recoverys" in this script directory and place the Recovery files into the folder.
@@ -147,6 +148,8 @@ if %langChoice%==3 (
     set langNext=下一页
 
     set langOfflineMode=离线模式
+
+    set langOnlineMode=在线模式
 
     set langGetSourceList=正在获取源数据列表
 
@@ -266,6 +269,8 @@ if %langChoice%==4 (
     set langNext=下一頁
 
     set langOfflineMode=離線模式
+
+    set langOnlineMode=在線模式
 
     set langGetSourceList=正在獲取源數據列表
 
@@ -399,6 +404,7 @@ if exist sources.list ( del sources.list )
 powershell Invoke-WebRequest "%SourcesListURL%" -OutFile "sources.list"
 if not exist sources.list (
     if exist recoverys (
+        set downloadSListFailed=true
         goto offlineModeChoice
     ) else (
         echo,
@@ -501,11 +507,12 @@ for /f "skip=%pageOfList% delims=# tokens=7" %%a in (sources.list) do (
 for /L %%A in (1,1,!recoveryVersionLID!) do echo [%%A]: %langDeviceCode%:!deviceCodeOptions[%%A]!, %langRecoveryName%:!recoveryNameOptions[%%A]!, %langRecoveryVersion%:!recoveryVersionOptions[%%A]!, %langRecoveryAuthor%:!recoveryAuthorOptions[%%A]! ,%langRelaeseDate%:!relaeseDateOptions[%%A]!.
 echo,
 set /a pageOfListEnd=%pageOfList%+8
-echo [N]:%langPrevious% (%pageOfList% - %pageOfListEnd%) [M]:%langNext%
-choice /c:!recoveryVersionChoiceOptions!nm /n /m "%langSourceListTitle%: "
+echo [L]:%langOfflineMode% [N]:%langPrevious% (%pageOfList% - %pageOfListEnd%) [M]:%langNext%
+choice /c:!recoveryVersionChoiceOptions!nml /n /m "%langSourceListTitle%: "
 set recoveryVersionChoiceErrorlevel=%errorlevel%
 set /a whereIsNLevel=%recoveryVersionLID%+1
 set /a whereIsMLevel=%recoveryVersionLID%+2
+set /a whereIsLLevel=%recoveryVersionLID%+3
 if %recoveryVersionChoiceErrorlevel%==%whereIsNLevel% (
     set /a pageOfList-=9
     goto getSourceListDone
@@ -519,11 +526,27 @@ if %recoveryVersionChoiceErrorlevel%==%whereIsMLevel% (
     )
     
 )
+if %recoveryVersionChoiceErrorlevel%==%whereIsLLevel% (
+    if exist recoverys (
+        goto offlineModeChoice
+    ) else (
+        echo,
+        echo %langGetSourceListFailedDesc%
+        echo,
+        echo %langAnyKeyRetry%...
+        pause>nul
+        goto getSourceListDone
+    )
+)
 goto step2Confirm
 
 
 :offlineModeChoice
-echo %langGetSourceListFailed%
+if "%downloadSListFailed%" == "true" (
+    echo %langGetSourceListFailed%
+) else (
+    echo,
+)
 choice /m "%langWannaTryOffline%"
 set tryOfflineChoice=%errorlevel%
 if %tryOfflineChoice%==1 (
@@ -560,11 +583,12 @@ del offlineDir.txt
 for /L %%A in (1,1,!offlineFileListLID!) do echo [%%A]: !offlineFileListOptions[%%A]!.
 echo,
 set /a pageOfOfflineListEnd=%pageOfOfflineList%+8
-echo [N]:%langPrevious% (%pageOfOfflineList% - %pageOfOfflineListEnd%) [M]:%langNext%
-choice /c:!offlineFileListChoiceOptions!nm /n /m "%langSourceListTitle%: "
+echo [L]:%langOnlineMode% [N]:%langPrevious% (%pageOfOfflineList% - %pageOfOfflineListEnd%) [M]:%langNext%
+choice /c:!offlineFileListChoiceOptions!nml /n /m "%langSourceListTitle%: "
 set offlineFileListChoiceErrorlevel=%errorlevel%
 set /a whereIsNLevel=%offlineFileListLID%+1
 set /a whereIsMLevel=%offlineFileListLID%+2
+set /a whereIsLLevel=%offlineFileListLID%+3
 if %offlineFileListChoiceErrorlevel%==%whereIsNLevel% (
     set /a pageOfOfflineList-=9
     goto offlineList
@@ -576,7 +600,9 @@ if %offlineFileListChoiceErrorlevel%==%whereIsMLevel% (
         set /a pageOfOfflineList+=9
         goto offlineList
     )
-    
+)
+if %offlineFileListChoiceErrorlevel%==%whereIsLLevel% (
+    goto step1Select
 )
 choice /m "%langOfflineIsZip%?"
 set isZipOfflineChoice=%errorlevel%
