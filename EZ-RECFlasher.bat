@@ -703,13 +703,13 @@ echo ---------------------------------------------------------------------------
 echo *    %langBreadcrumbSelect%    *    %langBreadcrumbConfirm%    *    %langBreadcrumbDownload%    *   [%langBreadcrumbFlashing%]   *    %langBreadcrumbComplete%    *
 echo ----------------------------------------------------------------------------------------------------
 echo %langCheckDevicePlugin%...
-adb devices|findstr /e "device"
+platform-tools\adb.exe devices|findstr /e "device"
 set adbOnline=%errorlevel%
-adb devices|findstr /e "recovery"
+platform-tools\adb.exe devices|findstr /e "recovery"
 set adbRecOnline=%errorlevel%
-adb devices|findstr /e "unauthorized"
+platform-tools\adb.exe devices|findstr /e "unauthorized"
 set adbNoAuth=%errorlevel%
-fastboot devices|findstr /e "fastboot"
+platform-tools\fastboot.exe devices|findstr /e "fastboot"
 set fastbootOnline=%errorlevel%
 if %fastbootOnline% == 0 (
     echo %langFastbootDeviceDetected%
