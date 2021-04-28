@@ -1,0 +1,10 @@
+[Device Name]#[Recovery Name]#[Recovery version]#[Recovery author]#[Release date]#[Download URL]#[File suffix]
+Picasso#OrangeFox_Recovery#R11.1_1.6_A11#masemoel#2021.04.22#https://dl.orangefox.download/60806955250d6e47d09a20b4#zip
+Picasso#OrangeFox_Recovery#R11.0_1.5_A11#masemoel#2021.03.12#https://dl.orangefox.download/604a5c07e4534f7cb0c48e3c#zip
+Picasso#TWRP#3.5.0_10-4#hadenix#2021-02-16#https://dl.sourceforge.net/project/redmi-k30-5g-picasso/TWRP/twrp-3.5.0_10-4-picasso-hadenix.img#img
+Picasso#TWRP#3.5.0_10-3a#hadenix#2021-01-30#https://dl.sourceforge.net/project/redmi-k30-5g-picasso/TWRP/twrp-3.5.0_10-3a-picasso-hadenix.img#img
+Picasso#TWRP#3.4.0_10-2a#hadenix#2020-12-17#https://dl.sourceforge.net/project/redmi-k30-5g-picasso/TWRP/twrp-3.4.0_10-2a-picasso-hadenix.img#img
+Picasso#TWRP#3.4.0_10-2#hadenix#2020-12-17#https://dl.sourceforge.net/project/redmi-k30-5g-picasso/TWRP/twrp-3.4.0_10-2-picasso-hadenix.img#img
+Picasso#TWRP#3.4.0_10-1a#hadenix#2020-12-13#https://dl.sourceforge.net/project/redmi-k30-5g-picasso/TWRP/twrp-3.4.0_10-1a-picasso-hadenix.img#img
+Picasso#TWRP#3.4.0-9#hadenix#2020-10-26#https://dl.sourceforge.net/project/redmi-k30-5g-picasso/TWRP/twrp-3.4.0-9-picasso-hadenix.img#img
+Picasso#TWRP#3.4.0-8#hadenix#2020-10-25#https://dl.sourceforge.net/project/redmi-k30-5g-picasso/TWRP/twrp-3.4.0-8-picasso-hadenix.img#img

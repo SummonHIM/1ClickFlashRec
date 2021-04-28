@@ -28,7 +28,7 @@ if /i %PSVersion% LSS 5 (
     exit
 )
 if %WindowsVer% LSS 10 (
-    set langChoice=1
+    set langChoice=2
     goto quickLangSetting
 )
 
@@ -85,7 +85,7 @@ if %langChoice%==2 (
     set langRecoveryAuthor=Recovery Author
     set langRelaeseDate=Relaese Date
     set langWannaTryOffline=Do you wanna enter offline mode?
-    set langOfflineIsZip=Is it a .zip compressed package
+    set langOfflineIsZip=Is it a .zip compressed package? Is there a recovery.img file in the zip archive
     set langOfflineFileName=Local file name
     set langConfirmTitle=Please confirm the recovery details
     set langConfirmdesc=Please check the information carefully！
@@ -100,7 +100,7 @@ if %langChoice%==2 (
     set langExpandingADB=Expanding Android Debug Bridge
     set langADBAlreadyExist=Android Debug Bridge already exists.
     set langExpandingZIP=Expanding Zip file
-    set langCheckDevicePlugin=Checking device connection, Please connect your device to your computer and enable USB debugging
+    set langCheckDevicePlugin=Checking device connection, Please connect your device to your computer and enable USB debugging. And make sure the driver is properly installed
     set langADBDeviceDetected=ADB device detected
     set langADBDeviceinRecovery=but device is in recovery mode.
     set langADBDeviceinRecoveryDesc=Please reboot your device to Fastboot mode.
@@ -171,7 +171,7 @@ if %langChoice%==3 (
     
     set langWannaTryOffline=是否进入离线模式?
 
-    set langOfflineIsZip=是否为 .zip 压缩包
+    set langOfflineIsZip=是否为 .zip 压缩包，该压缩包内是否有 recovery.img 文件
 
     set langOfflineFileName=本地文件名
 
@@ -201,7 +201,7 @@ if %langChoice%==3 (
 
     set langExpandingZIP=正在解压 Zip 类型文件
 
-    set langCheckDevicePlugin=正在检查设备连接，请插入设备至当前计算机内并开启“USB 调试”
+    set langCheckDevicePlugin=正在检查设备连接，请插入设备至当前计算机内并开启“USB 调试”。并确保驱动已正确安装
 
     set langADBDeviceDetected=已检测到 ADB 设备连接
 
@@ -292,7 +292,7 @@ if %langChoice%==4 (
     
     set langWannaTryOffline=是否進入離線模式?
 
-    set langOfflineIsZip=是否爲 .zip 壓縮包
+    set langOfflineIsZip=是否爲 .zip 壓縮包，該壓縮包內是否有 recovery.img 文件
 
     set langOfflineFileName=本地文件名
 
@@ -322,7 +322,7 @@ if %langChoice%==4 (
 
     set langExpandingZIP=正在解壓 Zip 類型文件
 
-    set langCheckDevicePlugin=正在檢查設備連接，請插入設備至當前計算機內並開啓“USB 偵錯”
+    set langCheckDevicePlugin=正在檢查設備連接，請插入設備至當前計算機內並開啓“USB 偵錯”。並確保驅動程式已正確安裝
 
     set langADBDeviceDetected=已偵測到 ADB 設備連接
 
@@ -729,6 +729,7 @@ echo ---------------------------------------------------------------------------
 echo *    %langBreadcrumbSelect%    *    %langBreadcrumbConfirm%    *    %langBreadcrumbDownload%    *   [%langBreadcrumbFlashing%]   *    %langBreadcrumbComplete%    *
 echo ----------------------------------------------------------------------------------------------------
 echo %langCheckDevicePlugin%...
+echo,
 platform-tools\adb.exe devices|findstr /e "device"
 set adbOnline=%errorlevel%
 platform-tools\adb.exe devices|findstr /e "recovery"
@@ -743,58 +744,26 @@ if %fastbootOnline% == 0 (
 ) else (
     echo %langFastbootDeviceUndetected%
 )
-if %adbOnline% == 0 (
-    if %adbRecOnline% == 0 (
-        if %adbNoAuth% == 0 (
-            echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
-            echo,
-            echo %langADBDeviceNoAuthDesc%
-            echo %langAnyKeyRetry%...
-            pause>nul
-        ) else (
-            echo %langADBDeviceDetected%, %langADBDeviceinRecovery%
-            echo,
-            echo %langADBDeviceinRecoveryDesc%
-            echo %langAnyKeyRetry%...
-            pause>nul
-        )
+if %adbRecOnline% == 0 (
+    set adbOnline=specialMode
+    echo %langADBDeviceDetected%, %langADBDeviceinRecovery%
+    echo,
+    goto inADBMode
+)
+if %adbNoAuth% == 0 (
+    set adbOnline=specialMode
+    echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
+    echo,
+    echo %langADBDeviceNoAuthDesc%
+    echo %langAnyKeyRetry%...
+    pause>nul
+)
+if not "%adbOnline%" == "specialMode" (
+    if %adbOnline% == 0 (
+        echo %langADBDeviceDetected%!
+        goto inADBMode
     ) else (
-        if %adbNoAuth% == 0 (
-            echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
-            echo,
-            echo %langADBDeviceNoAuthDesc%
-            echo %langAnyKeyRetry%...
-            pause>nul
-        ) else (
-            echo %langADBDeviceDetected%!
-            goto inADBMode
-        )
-    )
-) else (
-    if %adbRecOnline% == 0 (
-        if %adbNoAuth% == 0 (
-            echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
-            echo,
-            echo %langADBDeviceNoAuthDesc%
-            echo %langAnyKeyRetry%...
-            pause>nul
-        ) else (
-            echo %langADBDeviceDetected%, %langADBDeviceinRecovery%
-            echo,
-            echo %langADBDeviceinRecoveryDesc%
-            echo %langAnyKeyRetry%...
-            pause>nul
-        )
-    ) else (
-        if %adbNoAuth% == 0 (
-            echo %langADBDeviceDetected%, %langADBDeviceNoAuth%
-            echo,
-            echo %langADBDeviceNoAuthDesc%
-            echo %langAnyKeyRetry%...
-            pause>nul
-        ) else (
-            echo %langADBDeviceUndetected%
-        )
+        echo %langADBDeviceUndetected%
     )
 )
 timeout /t 1 /nobreak >NUL
