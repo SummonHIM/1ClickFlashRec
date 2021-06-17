@@ -16,7 +16,6 @@
 
 [Gitee](https://gitee.com/summonhim/EZ-RECFlasher/releases)
 
-现正官方支持的设备: 红米 K30 5G(Picasso)
 ## 我是程序员，如何基于此脚本修改并发布到我使用的机型论坛？
 
 首先你需要新建源列表文件（source.list）并编辑数据，方法如下：
@@ -31,7 +30,18 @@
 
 然后将源列表放置你的 HTML 服务器 (或者直接用 GitHub 吧，简单又免费233。) 然后编辑 SourcesListURL 的链接于 [EZ-RECFlasher.bat](https://github.com/SummonHIM/EZ-RECFlasher/blob/master/EZ-RECFlasher.bat) 第 37 行。
 
-## 支持语言
+## 支持的操作系统
+
+操作系统|是否支持|多语言功能|备注
+---|---|---|---
+Windows 10|√|√|
+Windows 8.1|√|×|需要升级 PowerShell 版本至 5.1
+Windows 8|√|×|需要升级 PowerShell 版本至 5.1
+Windows 7|√|×|需要升级 PowerShell 版本至 5.1
+Windows Vista|×|×|
+Windows XP|×|×|
+
+## 支持的语言
 
 - 英语
 - 简体中文
