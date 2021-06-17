@@ -4,6 +4,7 @@ echo off
 cls
 setlocal enabledelayedexpansion
 :getSystemInfo
+rem Get PowerShell and Windows version
 for /f "tokens=3 delims=n*." %%p in ('ver^') do (
     set WindowsVer=%%p
 )
@@ -15,6 +16,7 @@ for /f "skip=3 tokens=2 delims= " %%p in (PSVer.info) do (
 
 
 :systemInfoCheck
+rem If the PS version less than 5, block enter. If Windows version isnt 10, no multi-language function. only english display
 title Error: PowerShell version is too low.
 del PSVer.info
 if /i %PSVersion% LSS 5 (
@@ -34,6 +36,7 @@ if %WindowsVer% LSS 10 (
 
 
 :linkConfigurate
+rem Edit the online URL in here.
 set sourcesListURL=[Edit source list url here.]
 set ADBToolsURL=https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 set offlineMode=false
@@ -90,6 +93,7 @@ if %langChoice%==2 (
     set langConfirmTitle=Please confirm the recovery details
     set langConfirmdesc=Please check the information carefully！
     set langConfirmYN=Is the information correct
+    set langPSActBar=PowerShell Action Bar
     set langDownloading=Downloading
     set langDownloadRecoveryCheck=Checking selected Recovery
     set langDownloadRecoveryExist=Selected Recovery already exists.
@@ -180,6 +184,8 @@ if %langChoice%==3 (
     set langConfirmdesc=请认真检查以上信息！
 
     set langConfirmYN=以上信息是否正确
+
+    set langPSActBar=PowerShell 操作栏
 
     set langDownloading=正在下载
 
@@ -302,6 +308,8 @@ if %langChoice%==4 (
 
     set langConfirmYN=以上信息是否正確
 
+    set langPSActBar=PowerShell 操作欄
+
     set langDownloading=正在下載
 
     set langDownloadRecoveryCheck=正在檢查已選的 Recovery
@@ -399,6 +407,7 @@ cls
 echo ----------------------------------------------------------------------------------------------------
 echo *   [%langBreadcrumbSelect%]   *    %langBreadcrumbConfirm%    *    %langBreadcrumbDownload%    *    %langBreadcrumbFlashing%    *    %langBreadcrumbComplete%    *
 echo ----------------------------------------------------------------------------------------------------
+rem Download online sources.list
 echo %langGetSourceList%...
 if exist sources.list ( del sources.list )
 powershell Invoke-WebRequest "%SourcesListURL%" -OutFile "sources.list"
@@ -424,9 +433,11 @@ echo *   [%langBreadcrumbSelect%]   *    %langBreadcrumbConfirm%    *    %langBr
 echo ----------------------------------------------------------------------------------------------------
 echo      %langSourceListTitle%...
 echo ----------------------------------------------------------------------------------------------------
+rem Read source.list and get file info
 if %pageOfList% LEQ 0 (
     set pageOfList=1
 )
+rem - 1. Get device code
 set deviceCodeLID=0
 set "deviceCodeChoiceOptions="
 for /f "skip=%pageOfList% delims=# tokens=1" %%a in (sources.list) do (
@@ -438,6 +449,7 @@ for /f "skip=%pageOfList% delims=# tokens=1" %%a in (sources.list) do (
     set deviceCodeChoiceOptions=!deviceCodeChoiceOptions!!deviceCodeLID!
 )
 :getDeviceCodeDone
+rem - 2. Get recovery name
 set recoveryNameLID=0
 set "recoveryNameChoiceOptions="
 for /f "skip=%pageOfList% delims=# tokens=2" %%a in (sources.list) do (
@@ -449,6 +461,7 @@ for /f "skip=%pageOfList% delims=# tokens=2" %%a in (sources.list) do (
     set recoveryNameChoiceOptions=!recoveryNameChoiceOptions!!recoveryNameLID!
 )
 :getRecoveryNameDone
+rem - 3. Get recovery version
 set recoveryVersionLID=0
 set "recoveryVersionChoiceOptions="
 for /f "skip=%pageOfList% delims=# tokens=3" %%a in (sources.list) do (
@@ -460,6 +473,7 @@ for /f "skip=%pageOfList% delims=# tokens=3" %%a in (sources.list) do (
     set recoveryVersionChoiceOptions=!recoveryVersionChoiceOptions!!recoveryVersionLID!
 )
 :getRecoveryVersionDone
+rem - 4. Get recovery author
 set recoveryAuthorLID=0
 set "recoveryAuthorChoiceOptions="
 for /f "skip=%pageOfList% delims=# tokens=4" %%a in (sources.list) do (
@@ -471,6 +485,7 @@ for /f "skip=%pageOfList% delims=# tokens=4" %%a in (sources.list) do (
     set recoveryAuthorChoiceOptions=!recoveryAuthorChoiceOptions!!recoveryAuthorLID!
 )
 :getRecoveryAuthorDone
+rem - 5. Get relaese date
 set relaeseDateLID=0
 set "relaeseDateChoiceOptions="
 for /f "skip=%pageOfList% delims=# tokens=5" %%a in (sources.list) do (
@@ -482,6 +497,7 @@ for /f "skip=%pageOfList% delims=# tokens=5" %%a in (sources.list) do (
     set relaeseDateChoiceOptions=!relaeseDateChoiceOptions!!relaeseDateLID!
 )
 :getRelaeseDateDone
+rem - 5. Get download url
 set downloadLinkLID=0
 set "downloadLinkChoiceOptions="
 for /f "skip=%pageOfList% delims=# tokens=6" %%a in (sources.list) do (
@@ -493,6 +509,7 @@ for /f "skip=%pageOfList% delims=# tokens=6" %%a in (sources.list) do (
     set downloadLinkChoiceOptions=!downloadLinkChoiceOptions!!downloadLinkLID!
 )
 :getDownloadLinkDone
+rem - 5. Get file type (img or zip)
 set fileTypeLID=0
 set "fileTypeChoiceOptions="
 for /f "skip=%pageOfList% delims=# tokens=7" %%a in (sources.list) do (
@@ -513,6 +530,7 @@ set recoveryVersionChoiceErrorlevel=%errorlevel%
 set /a whereIsNLevel=%recoveryVersionLID%+1
 set /a whereIsMLevel=%recoveryVersionLID%+2
 set /a whereIsLLevel=%recoveryVersionLID%+3
+rem list pagination function
 if %recoveryVersionChoiceErrorlevel%==%whereIsNLevel% (
     set /a pageOfList-=9
     goto getSourceListDone
@@ -542,6 +560,7 @@ goto step2Confirm
 
 
 :offlineModeChoice
+rem Offline mode start in here
 if "%downloadSListFailed%" == "true" (
     echo %langGetSourceListFailed%
 ) else (
@@ -563,6 +582,7 @@ echo *   [%langBreadcrumbSelect%]   *    %langBreadcrumbConfirm%    *    %langBr
 echo ----------------------------------------------------------------------------------------------------
 echo      %langSourceListTitle% (%langOfflineMode%)...
 echo ----------------------------------------------------------------------------------------------------
+rem Get and list recoverys folder existed files.
 echo line1>offlineDir.txt
 dir /a:-d /b recoverys>>offlineDir.txt
 if %pageOfOfflineList% LEQ 0 (
@@ -589,6 +609,7 @@ set offlineFileListChoiceErrorlevel=%errorlevel%
 set /a whereIsNLevel=%offlineFileListLID%+1
 set /a whereIsMLevel=%offlineFileListLID%+2
 set /a whereIsLLevel=%offlineFileListLID%+3
+rem list pagination function
 if %offlineFileListChoiceErrorlevel%==%whereIsNLevel% (
     set /a pageOfOfflineList-=9
     goto offlineList
@@ -646,9 +667,17 @@ if %confirmCorrectChoice% == 2 (
 
 :step3Download
 cls
+echo,
+echo,
+echo,
+echo [%langPSActBar%]
+echo,
+echo,
+echo,
 echo ----------------------------------------------------------------------------------------------------
 echo *    %langBreadcrumbSelect%    *    %langBreadcrumbConfirm%    *   [%langBreadcrumbDownload%]   *    %langBreadcrumbFlashing%    *    %langBreadcrumbComplete%    *
 echo ----------------------------------------------------------------------------------------------------
+rem Download selected recovery
 if %offlineMode% == true (
     goto downloadADB
 )
@@ -674,6 +703,7 @@ if not exist "recoverys\%downloadingFileName%_recovery.!fileTypeOptions[%recover
 
 :downloadADB
 echo,
+rem Download adb and fastboot
 echo %langDownloadADBCheck%...
 if not exist platform-tools (
     echo %langDownloadADB%...
@@ -701,6 +731,7 @@ echo ---------------------------------------------------------------------------
 if exist expanded_Rec (
     rmdir /s /q expanded_Rec >nul
 )
+rem If file type is zip, this script will expand the zip to expanded_Rec folder then select the recovery.img in that folder
 if !fileTypeOptions[%recoveryVersionChoiceErrorlevel%]! == zip (
     echo %langExpandingZIP%...
     powershell Expand-Archive -Path "recoverys\%downloadingFileName%_recovery.!fileTypeOptions[%recoveryVersionChoiceErrorlevel%]!" -DestinationPath %~dp0\expanded_Rec
@@ -730,6 +761,7 @@ echo *    %langBreadcrumbSelect%    *    %langBreadcrumbConfirm%    *    %langBr
 echo ----------------------------------------------------------------------------------------------------
 echo %langCheckDevicePlugin%...
 echo,
+rem Use adb devices to check the device status
 platform-tools\adb.exe devices|findstr /e "device"
 set adbOnline=%errorlevel%
 platform-tools\adb.exe devices|findstr /e "recovery"
@@ -772,6 +804,7 @@ goto checkDevicePlugin
 
 :inADBMode
 echo,
+rem If adb devices return device, reboot device to fastboot
 echo %langRebootingToFastboot%...
 platform-tools\adb.exe reboot bootloader >nul
 timeout /t 5 /nobreak >NUL
