@@ -17,7 +17,6 @@ Easy and fast download and flash recovery in one file!
 
 [Gitee](https://gitee.com/summonhim/EZ-RECFlasher/releases)
 
-Now available devices: Redmi K30 5G(Picasso)
 ## I'm a programmer, how to use this code?
 
 First you need to create a source list file like this:
@@ -31,6 +30,17 @@ File suffix have:
 You can see an sample [in here](https://github.com/SummonHIM/1ClickFlashRec/blob/master/sample.sources.list). And remember: dont edit in line 1.
 
 Then push your source list in your html server (Or github page, free server lol.) and edit the SourcesListURL's URL in [EZ-RECFlasher.bat](https://github.com/SummonHIM/EZ-RECFlasher/blob/master/EZ-RECFlasher.bat) line 37.
+
+## Support OS
+
+OS|Support|Multi-language|Others
+---|---|---|---
+Windows 10|√|√|
+Windows 8.1|√|×|Need to upgrade PowerShell version to 5.1
+Windows 8|√|×|Need to upgrade PowerShell version to 5.1
+Windows 7|√|×|Need to upgrade PowerShell version to 5.1
+Windows Vista|×|×|
+Windows XP|×|×|
 
 ## Support languages
 
