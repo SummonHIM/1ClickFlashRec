@@ -30,6 +30,7 @@
 
 然后将源列表放置你的 HTML 服务器 (或者直接用 GitHub 吧，简单又免费233。) 然后编辑 SourcesListURL 的链接于 [EZ-RECFlasher.bat](https://github.com/SummonHIM/EZ-RECFlasher/blob/master/EZ-RECFlasher.bat) 第 40 行。
 
+[XDA 帖子模板](https://github.com/SummonHIM/EZ-RECFlasher/blob/gh-pages/xda_template/xda_template.md)
 ## 支持的操作系统
 
 操作系统|是否支持|多语言功能|备注
