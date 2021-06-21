@@ -36,7 +36,7 @@ Multi-language not support Win8.1 or lower!
 
 #### CMD fast command
 ```
-cd /d %USERPROFILE%\Documents & certutil -urlcache -split -f [Put URL in here] & start EZ-RECFlasher.bat
+cd /d %USERPROFILE%\Documents & certutil -urlcache -split -f "[Put URL in here]" & start EZ-RECFlasher.bat
 ```
 #### PowerShell fast command
 ```
