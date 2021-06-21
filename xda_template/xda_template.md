@@ -42,10 +42,6 @@ cd /d %USERPROFILE%\Documents & certutil -urlcache -split -f "[Put URL in here]"
 ```
 cd $USERPROFILE\Documents ; Invoke-WebRequest "[Put URL in here]" -OutFile "EZ-RECFlasher.bat" ; Start-Process EZ-RECFlasher.bat
 ```
-## USB Drive
-If you don't have response on fastboot mode, maybe you need to install USB Drive by MiFlash Tools.
-
-Download latest MiFlash Tools(MIUI China page)
 ## Source code
 [GitHub](https://github.com/SummonHIM/EZ-RECFlasher)
 
