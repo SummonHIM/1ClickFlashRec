@@ -20,7 +20,7 @@
 
 首先你需要新建源列表文件（source.list）并编辑数据，方法如下：
 
-[设备代码]#[Recovery 名称]#[Recovery 版本]#[Recovery 作者]#[发布日期]#[下载直连]#[文件后缀]
+[设备代码]#[Recovery 名称]#[Recovery 版本]#[Recovery 作者]#[发布日期]#[下载直连]#[文件后缀]#[SHA1 校验码]
 
 文件后缀目前支持:
  - img : IMG 类型的文件
