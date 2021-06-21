@@ -21,7 +21,7 @@ Easy and fast download and flash recovery in one file!
 
 First you need to create a source list file like this:
 
-[Device Name]#[Recovery Name]#[Recovery version]#[Recovery author]#[Release date]#[Download URL]#[File suffix]
+[Device Name]#[Recovery Name]#[Recovery version]#[Recovery author]#[Release date]#[Download URL]#[File suffix]#[File SHA1]
 
 File suffix have:
  - img : IMG type file
