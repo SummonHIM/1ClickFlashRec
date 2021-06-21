@@ -71,6 +71,7 @@ if %langChoice%==2 (
     set langBreadcrumbComplete=Complete
     set langBreadcrumbFailed=Failed
     set langWelcome=Welcome to
+    set langRecommendedSize=Recommended console size
     set langLogoAttention=Pay Attention in Flashing！
     set langTitle=Easy flash Recovery
     set langAnyKeyRetry=Press any key to retry
@@ -98,6 +99,10 @@ if %langChoice%==2 (
     set langDownloadRecoveryCheck=Checking selected Recovery
     set langDownloadRecoveryExist=Selected Recovery already exists.
     set langDownloadRecoveryFailed=Download selected recovery failed！
+    set langCheckSHA1Failed=Check file SHA1 failed!
+    set langRemoteSHA1=Remote provides SHA1
+    set langLocalSHA1=Local checked SHA1
+    set langCheckSHA1DelFile=For flashing more safely, this file will be deleted when click any key.
     set langDownloadADBCheck=Checking Android Debug Bridge
     set langDownloadADB=Android Debug Bridge Doesn't exist！Start Download
     set langDownloadADBFailed=Download Android Debug Bridge failed！
@@ -140,6 +145,8 @@ if %langChoice%==3 (
     set langBreadcrumbFailed=失败
 
     set langWelcome=欢迎使用
+
+    set langRecommendedSize=推荐屏幕大小
 
     set langLogoAttention=刷机有风险，玩机需谨慎。
 
@@ -194,6 +201,14 @@ if %langChoice%==3 (
     set langDownloadRecoveryExist=已选择的 Recovery 已经存在。
 
     set langDownloadRecoveryFailed=下载已选择的 Recovery 失败！
+
+    set langCheckSHA1Failed=校验文件 SHA1 失败！
+
+    set langRemoteSHA1=远程提供的 SHA1
+
+    set langLocalSHA1=本地检查的 SHA1
+
+    set langCheckSHA1DelFile=为了让刷机更安全，点击任意键将删除该文件。
 
     set langDownloadADBCheck=正在检查 Android Debug Bridge
 
@@ -264,9 +279,11 @@ if %langChoice%==4 (
 
     set langWelcome=歡迎使用
 
+    set langRecommendedSize=推薦螢幕大小
+
     set langLogoAttention=刷機有風險，玩機需謹慎。
 
-    set langTitle=一鍵刷寫 Recovery 腳本
+    set langTitle=一鍵刷寫 Recovery 指令碼
     
     set langAnyKeyRetry=按任意鍵重試
 
@@ -276,17 +293,17 @@ if %langChoice%==4 (
 
     set langOfflineMode=離線模式
 
-    set langOnlineMode=在線模式
+    set langOnlineMode=線上模式
 
-    set langGetSourceList=正在獲取源數據列表
+    set langGetSourceList=正在獲取源資料列表
 
-    set langGetSourceListFailed=獲取源數據列表失敗！
+    set langGetSourceListFailed=獲取源資料列表失敗！
 
-    set langGetSourceListFailedDesc=若要運行離線模式，請在本腳本目錄下新建 “recoverys” 文件夾並將欲刷寫的 Recovery 文件放入文件夾內。
+    set langGetSourceListFailedDesc=若要執行離線模式，請在本指令碼目錄下新建 “recoverys” 資料夾並將欲刷寫的 Recovery 檔案放入資料夾內。
     
     set langSourceListTitle=請選擇欲刷寫的 Recovery
 
-    set langDeviceCode=設備代碼
+    set langDeviceCode=裝置程式碼
 
     set langRecoveryName=Recovery 名稱
 
@@ -294,19 +311,19 @@ if %langChoice%==4 (
 
     set langRecoveryAuthor=Recovery 作者
 
-    set langRelaeseDate=發佈日期
+    set langRelaeseDate=釋出日期
     
     set langWannaTryOffline=是否進入離線模式?
 
-    set langOfflineIsZip=是否爲 .zip 壓縮包，該壓縮包內是否有 recovery.img 文件
+    set langOfflineIsZip=是否為 .zip 壓縮包，該壓縮包內是否有 recovery.img 檔案
 
-    set langOfflineFileName=本地文件名
+    set langOfflineFileName=本地檔名
 
-    set langConfirmTitle=請確認詳細信息
+    set langConfirmTitle=請確認詳細資訊
 
-    set langConfirmdesc=請認真檢查以上信息！
+    set langConfirmdesc=請認真檢查以上資訊！
 
-    set langConfirmYN=以上信息是否正確
+    set langConfirmYN=以上資訊是否正確
 
     set langPSActBar=PowerShell 操作欄
 
@@ -318,6 +335,14 @@ if %langChoice%==4 (
 
     set langDownloadRecoveryFailed=下載已選擇的 Recovery 失敗！
 
+    set langCheckSHA1Failed=校驗檔案 SHA1 失敗！
+
+    set langRemoteSHA1=遠端提供的 SHA1
+
+    set langLocalSHA1=本地檢查的 SHA1
+
+    set langCheckSHA1DelFile=為了讓刷機更安全，點選任意鍵將刪除該檔案。
+
     set langDownloadADBCheck=正在檢查 Android Debug Bridge
 
     set langDownloadADB=Android Debug Bridge 不存在！開始下載
@@ -328,45 +353,45 @@ if %langChoice%==4 (
 
     set langADBAlreadyExist=Android Debug Bridge 已經存在。
 
-    set langExpandingZIP=正在解壓 Zip 類型文件
+    set langExpandingZIP=正在解壓 Zip 類型檔案
 
-    set langCheckDevicePlugin=正在檢查設備連接，請插入設備至當前計算機內並開啓“USB 偵錯”。並確保驅動程式已正確安裝
+    set langCheckDevicePlugin=正在檢查裝置連線，請插入裝置至當前計算機內並開啟“USB 偵錯”。並確保驅動程式已正確安裝
 
-    set langADBDeviceDetected=已偵測到 ADB 設備連接
+    set langADBDeviceDetected=已偵測到 ADB 裝置連線
 
-    set langADBDeviceinRecovery=但設備現處於 Recovery 模式。
+    set langADBDeviceinRecovery=但裝置現處於 Recovery 模式。
 
-    set langADBDeviceinRecoveryDesc=請重啓您的設備至 Fastboot 模式。
+    set langADBDeviceinRecoveryDesc=請重啟您的裝置至 Fastboot 模式。
     
-    set langADBDeviceNoAuth=但設備尚未允許認證。
+    set langADBDeviceNoAuth=但裝置尚未允許認證。
 
-    set langADBDeviceNoAuthDesc=請檢查您的設備，當設備提示申請 USB 偵錯授權時，勾選“一律允許透過這台電腦進行”並點擊允許。
+    set langADBDeviceNoAuthDesc=請檢查您的裝置，當裝置提示申請 USB 偵錯授權時，勾選“一律允許透過這臺電腦進行”並點選允許。
 
-    set langADBDeviceUndetected=未偵測到 ADB 設備連接。
+    set langADBDeviceUndetected=未偵測到 ADB 裝置連線。
 
-    set langFastbootDeviceDetected=已偵測到 Fastboot 設備連接！
+    set langFastbootDeviceDetected=已偵測到 Fastboot 裝置連線！
 
-    set langFastbootDeviceUndetected=未偵測到 Fastboot 設備連接。
+    set langFastbootDeviceUndetected=未偵測到 Fastboot 裝置連線。
 
-    set langRebootingToFastboot=正在重啓手機至 Fastboot 模式
+    set langRebootingToFastboot=正在重啟手機至 Fastboot 模式
 
     set langFlashingRecovery=開始刷寫已選擇的 Recovery
 
     set langDoneTitle=大功告成！
 
-    set langRebootToFastboot=是否將設備重啓至 Recovery
+    set langRebootToFastboot=是否將裝置重啟至 Recovery
 
     set langFailedTitle=刷寫失敗！
 
     set langFailedDesc1=請檢查
 
-    set langFailedDesc2=設備代碼/型號是否正確。
+    set langFailedDesc2=裝置程式碼/型號是否正確。
 
-    set langFailedDesc3=確保設備的 Bootloader 已解鎖。
+    set langFailedDesc3=確保裝置的 Bootloader 已解鎖。
 
-    set langFailedDesc4=選擇的 Recovery 文件是否完整。
+    set langFailedDesc4=選擇的 Recovery 檔案是否完整。
 
-    set langFailedDesc5=若仍失敗，請聯繫 腳本/Recovery 作者。
+    set langFailedDesc5=若仍失敗，請聯絡 指令碼/Recovery 作者。
 
     set langFailedRetry=是否重試
 
@@ -377,6 +402,10 @@ if %langChoice%==4 (
 :Logo
 cls
 title %langWelcome% %langTitle%
+echo --------------------------------------------------------120-------------------------------------------------------------
+echo                                                %langRecommendedSize%
+echo,
+echo,
 echo  ____    ________            ____    ____    ____      
 echo /\  _`\ /\_____  \          /\  _`\ /\  _`\ /\  _`\    
 echo \ \ \L\_\/____//'/'         \ \ \L\ \ \ \L\_\ \ \/\_\  
@@ -521,6 +550,18 @@ for /f "skip=%pageOfList% delims=# tokens=7" %%a in (sources.list) do (
     set fileTypeChoiceOptions=!fileTypeChoiceOptions!!fileTypeLID!
 )
 :getFileTypeDone
+rem - 6. Get file SHA1
+set fileSHA1LID=0
+set "fileSHA1ChoiceOptions="
+for /f "skip=%pageOfList% delims=# tokens=8" %%a in (sources.list) do (
+    if !fileSHA1LinkLID!==9 (
+        goto getFileSHA1Done
+    )
+    set /a fileSHA1LID+=1
+    set "fileSHA1Options[!fileSHA1LID!]=%%a"
+    set fileSHA1ChoiceOptions=!fileSHA1ChoiceOptions!!fileSHA1LID!
+)
+:getFileSHA1Done
 for /L %%A in (1,1,!recoveryVersionLID!) do echo [%%A]: %langDeviceCode%:!deviceCodeOptions[%%A]!, %langRecoveryName%:!recoveryNameOptions[%%A]!, %langRecoveryVersion%:!recoveryVersionOptions[%%A]!, %langRecoveryAuthor%:!recoveryAuthorOptions[%%A]! ,%langRelaeseDate%:!relaeseDateOptions[%%A]!.
 echo,
 set /a pageOfListEnd=%pageOfList%+8
@@ -633,6 +674,9 @@ if %isZipOfflineChoice%==1 (
 if %isZipOfflineChoice%==2 (
     set isZipOffline=false
 )
+for /f "skip=2 tokens=2 delims= " %%p in ('powershell Get-FileHash -Algorithm SHA1 -Path "recoverys\!offlineFileListOptions[%offlineFileListChoiceErrorlevel%]!"^') do (
+    set selectedFileSHA1=%%p
+)
 
 
 :step2Confirm
@@ -645,6 +689,7 @@ echo ---------------------------------------------------------------------------
 if %offlineMode% == true (
     echo %langOfflineFileName%: !offlineFileListOptions[%offlineFileListChoiceErrorlevel%]!
     echo %langOfflineIsZip%: %isZipOffline%
+    echo SHA1: %selectedFileSHA1%
 )
 if %offlineMode% == false (
     echo %langDeviceCode%: !deviceCodeOptions[%recoveryVersionChoiceErrorlevel%]!
@@ -652,6 +697,7 @@ if %offlineMode% == false (
     echo %langRecoveryVersion%: !recoveryVersionOptions[%recoveryVersionChoiceErrorlevel%]!
     echo %langRecoveryAuthor%: !recoveryAuthorOptions[%recoveryVersionChoiceErrorlevel%]!
     echo %langRelaeseDate%: !relaeseDateOptions[%recoveryVersionChoiceErrorlevel%]!
+    echo SHA1: !fileSHA1Options[%recoveryVersionChoiceErrorlevel%]!
 )
 echo,
 echo %langConfirmdesc%
@@ -697,6 +743,21 @@ if not exist "recoverys\%downloadingFileName%_recovery.!fileTypeOptions[%recover
     echo %langDownloadRecoveryFailed%
     echo %langAnyKeyRetry%...
     pause>nul
+    goto step3Download
+)
+set remoteFileSHA1=!fileSHA1Options[%recoveryVersionChoiceErrorlevel%]!
+for /f "skip=2 tokens=2 delims= " %%p in ('powershell Get-FileHash -Algorithm SHA1 -Path "recoverys\%downloadingFileName%_recovery.!fileTypeOptions[%recoveryVersionChoiceErrorlevel%]!"^') do (
+    set selectedFileSHA1=%%p
+)
+if not "%selectedFileSHA1%" == "%remoteFileSHA1%" (
+    echo %langCheckSHA1Failed%
+    echo %langRemoteSHA1%: %remoteFileSHA1%
+    echo %langLocalSHA1%: %selectedFileSHA1%
+    echo,
+    echo %langCheckSHA1DelFile%
+    echo %langAnyKeyRetry%...
+    pause>nul
+    del "recoverys\%downloadingFileName%_recovery.!fileTypeOptions[%recoveryVersionChoiceErrorlevel%]!"
     goto step3Download
 )
 
