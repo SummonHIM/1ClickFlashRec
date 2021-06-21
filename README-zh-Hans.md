@@ -28,7 +28,7 @@
 
 你可以[在此](https://github.com/SummonHIM/1ClickFlashRec/blob/master/sample.sources.list)查看范本。请注意：不要将数据放第一行。
 
-然后将源列表放置你的 HTML 服务器 (或者直接用 GitHub 吧，简单又免费233。) 然后编辑 SourcesListURL 的链接于 [EZ-RECFlasher.bat](https://github.com/SummonHIM/EZ-RECFlasher/blob/master/EZ-RECFlasher.bat) 第 37 行。
+然后将源列表放置你的 HTML 服务器 (或者直接用 GitHub 吧，简单又免费233。) 然后编辑 SourcesListURL 的链接于 [EZ-RECFlasher.bat](https://github.com/SummonHIM/EZ-RECFlasher/blob/master/EZ-RECFlasher.bat) 第 40 行。
 
 ## 支持的操作系统
 
